@@ -1,6 +1,6 @@
 [package]
 name = "cognito_srp"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Luc Dewavrin"]
 license = "MIT"
 description = "AWS cognito Secure Remote Password (SRP) client implementation"
