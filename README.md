@@ -6,7 +6,6 @@ The library is a port of Python [warrant] library's cryptography with a differen
 
 The library is not production ready.
 
-
 ## Security Warning
 
 The code has not been audited for security risks and the implementation might not be correct.
@@ -21,8 +20,7 @@ Rust **1.56** or higher.
 
 Crate is licensed under
 
- * [MIT license](http://opensource.org/licenses/MIT)
-
+- [MIT license](http://opensource.org/licenses/MIT)
 
 ## Usage
 
@@ -70,20 +68,17 @@ Use `process_challenge` to generate the response to the server challenge.
 
 ```
 
-A comprehensive example is available here: https://github.com/lucdew/cognito-srp-auth
+A comprehensive example integrating with [AWS SDK for rust][aws-sdk-rust] is available here: https://github.com/lucdew/cognito-srp-auth
 
 ## Tests
 
 Only tested manually without any client secret.
 
-
-[//]: # (badges)
+[//]: # "badges"
 [crate-image]: https://img.shields.io/crates/v/cognito_srp.svg
 [crate-link]: https://crates.io/crates/cognito_srp
 [docs-image]: https://img.shields.io/badge/rust-documentation-blue.svg
 [docs-link]: https://docs.rs/cognito_srp/
-
-
-[//]: # (general links)
-
+[//]: # "general links"
 [warrant]: https://github.com/capless/warrant
+[aws-sdk-rust]: https://aws.amazon.com/sdk-for-rust/
