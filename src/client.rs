@@ -124,6 +124,16 @@ fn get_password_authentication_key(
     Ok(ak.to_vec())
 }
 
+/// Prefix with 0 an hexa string if it has an odd number of chars and decode it
+fn safe_hex_decode(hex_str: &str) -> Result<Vec<u8>, hex::FromHexError> {
+    // len() returns bytes size not chars but ok for ascii
+    if hex_str.len() % 2 != 0 {
+        hex::decode(format!("0{}", hex_str))
+    } else {
+        hex::decode(hex_str)
+    }
+}
+
 fn get_mandatory_challenge_params<const N: usize>(
     challenge_params: &HashMap<String, String>,
     param_names: [&str; N],
@@ -230,13 +240,13 @@ impl<'a> SrpClient<'a> {
             &user_id,
             &self.password,
             pool_name,
-            &hex::decode(salt_hex).map_err(|err| {
+            &safe_hex_decode(&salt_hex).map_err(|err| {
                 CognitoSrpError::IllegalArgument(format!(
                     "Invalid hexa SALT in challenge parameters, got {}",
                     err.to_string()
                 ))
             })?,
-            &hex::decode(srp_b_hex).map_err(|err| {
+            &safe_hex_decode(&srp_b_hex).map_err(|err| {
                 CognitoSrpError::IllegalArgument(format!(
                     "Invalid hexa SRP_P in challenge parameters, got {}",
                     err.to_string()
